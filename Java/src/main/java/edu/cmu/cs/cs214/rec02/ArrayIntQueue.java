@@ -46,7 +46,7 @@ public class ArrayIntQueue implements IntQueue {
 
     /** {@inheritDoc} */
     public void clear() {
-        //Arrays.fill(elementData, 0); BUG2
+        //Arrays.fill(elementData, 0);
         elementData = new int[INITIAL_SIZE];
         size = 0;
         head = 0;
@@ -105,7 +105,8 @@ public class ArrayIntQueue implements IntQueue {
                 newData[i - head] = elementData[i];
             }
             for (int i = 0; i < head; i++) {
-                newData[head - i] = elementData[i];
+                //newData[head - i] = elementData[i]; BUG 3
+                newData[oldCapacity - head + i] = elementData[i];
             }
             elementData = newData;
             head = 0;
